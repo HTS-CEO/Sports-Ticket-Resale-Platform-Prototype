@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seatwell - Your Seat, Your Game, Your Opportunity</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .auth-buttons button {
+            margin-left: 10px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .login-btn {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .signup-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .signup-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 1.4s ease-in-out;
+        }
+
+        .cta-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .primary-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        .secondary-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .games-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: var(--primary);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .game-details {
+            padding: 20px;
+        }
+
+        .game-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .game-info {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .game-info p {
+            margin-bottom: 5px;
+        }
+
+        .game-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .game-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .view-btn, .buy-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .view-btn {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .view-btn:hover {
+            background-color: #d5dbdb;
+        }
+
+        .buy-btn {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .buy-btn:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-links h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            color: var(--primary);
+            font-size: 24px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--danger);
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+        }
+
+        .submit-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .auth-toggle a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-toggle a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dashboard styles */
+        .dashboard {
+            display: none;
+            padding: 40px 0;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-title {
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .user-name {
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            margin-left: 15px;
+            padding: 6px 12px;
+            background-color: var(--light);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .logout-btn:hover {
+            background-color: #d5dbdb;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .nav-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+
+        .dashboard-content {
+            display: none;
+        }
+
+        .dashboard-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table th, .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table th {
+            background-color: #f8f9fa;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .data-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-sold {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .action-btn {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .edit-btn {
+            background-color: var(--light);
+            color: var(--dark);
+            margin-right: 5px;
+        }
+
+        .edit-btn:hover {
+            background-color: #d5dbdb;
+        }
+
+        .delete-btn {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .delete-btn:hover {
+            background-color: #f1b0b7;
+        }
+
+        /* Admin specific styles */
+        .admin-dashboard .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Ticket detail modal */
+        .ticket-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ticket-title {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .ticket-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .ticket-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .meta-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .meta-value {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .ticket-seat-map {
+            height: 200px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .ticket-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                margin-top: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+
+            .modal-content {
+                margin: 20px auto;
+                width: 95%;
+            }
+
+            .dashboard-nav {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 5px;
+            }
+
+            .ticket-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Utility classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Landing Page -->
+    <div id="landing-page">
+        <header>
+            <div class="container header-content">
+                <a href="#" class="logo">Seat<span>well</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#games">Games</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <button class="login-btn" onclick="openModal('login-modal')">Log In</button>
+                    <button class="signup-btn" onclick="openModal('signup-modal')">Sign Up</button>
+                </div>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Your Seat, Your Game, Your Opportunity</h1>
+                <p>The official, trusted platform for season ticket holders to resell their seats and for fans to find incredible last-minute tickets.</p>
+                <div class="cta-buttons">
+                    <button class="cta-btn primary-btn" onclick="openModal('signup-modal')">Find Tickets</button>
+                    <button class="cta-btn secondary-btn" onclick="openModal('signup-modal')">Sell Your Seat</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="games" class="games-section">
+            <div class="container">
+                <h2 class="section-title">Games on the Horizon</h2>
+                <p class="text-center mb-20">Browse upcoming games. Tickets become available as season holders list them.</p>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Alpha</h3>
+                            <div class="game-info">
+                                <p>25/10/2024 - 18:00</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$85 - $220</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(1)">View Tickets</button>
+                                <button class="buy-btn" onclick="buyTicket(1)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Bravo</h3>
+                            <div class="game-info">
+                                <p>06/11/2024 - 20:00</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$75 - $195</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(2)">View Tickets</button>
+                                <button class="buy-btn" onclick="buyTicket(2)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Charlie</h3>
+                            <div class="game-info">
+                                <p>18/11/2024 - 19:30</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$90 - $240</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(3)">View Tickets</button>
+                                <button class="buy-btn" onclick="buyTicket(3)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Delta</h3>
+                            <div class="game-info">
+                                <p>02/12/2024 - 19:40</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$65 - $180</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(4)">View Tickets</button>
+                                <button class="buy-btn" onclick="buyTicket(4)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Echo</h3>
+                            <div class="game-info">
+                                <p>15/12/2024 - 18:00</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$110 - $280</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(5)">View Tickets</button>
+                                <button class="buy-btn" onclick="buyTicket(5)">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <div class="footer-logo" onclick="navigateToHome()">Seat<span>well</span></div>
+                        <p>A Prototype for a Better Fan Experience.</p>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Buy a Ticket</a></li>
+                            <li><a href="#">Sell a Ticket</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Seatwell. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Buyer Dashboard -->
+    <div id="buyer-dashboard" class="dashboard hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Buyer Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar">BU</div>
+                    <span class="user-name">Buyer User</span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <div class="dashboard-nav">
+                <div class="nav-item active" onclick="switchTab('buyer-tickets-tab', this)">Available Tickets</div>
+                <div class="nav-item" onclick="switchTab('buyer-purchases-tab', this)">My Purchases</div>
+            </div>
+
+            <div id="buyer-tickets-tab" class="dashboard-content active">
+                <div class="games-grid">
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Alpha</h3>
+                            <div class="game-info">
+                                <p>25/10/2024 - 18:00</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$120</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(1)">View Details</button>
+                                <button class="buy-btn" onclick="buyTicket(1)">Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Bravo</h3>
+                            <div class="game-info">
+                                <p>06/11/2024 - 20:00</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$95</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(2)">View Details</button>
+                                <button class="buy-btn" onclick="buyTicket(2)">Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card">
+                        <div class="game-image" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="game-details">
+                            <h3 class="game-title">vs. Team Charlie</h3>
+                            <div class="game-info">
+                                <p>18/11/2024 - 19:30</p>
+                                <p>Aviens XYZ</p>
+                            </div>
+                            <div class="game-price">$140</div>
+                            <div class="game-actions">
+                                <button class="view-btn" onclick="viewTicket(3)">View Details</button>
+                                <button class="buy-btn" onclick="buyTicket(3)">Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="buyer-purchases-tab" class="dashboard-content">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Date</th>
+                                <th>Section</th>
+                                <th>Seat</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>vs. Team Delta</td>
+                                <td>02/12/2024</td>
+                                <td>105</td>
+                                <td>Row F, Seat 12</td>
+                                <td>$85.00</td>
+                                <td><span class="status-badge status-available">Confirmed</span></td>
+                            </tr>
+                            <tr>
+                                <td>vs. Team Echo</td>
+                                <td>15/12/2024</td>
+                                <td>208</td>
+                                <td>Row B, Seat 5</td>
+                                <td>$120.00</td>
+                                <td><span class="status-badge status-pending">Processing</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seller Dashboard -->
+    <div id="seller-dashboard" class="dashboard hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Seller Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar">SU</div>
+                    <span class="user-name">Seller User</span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <div class="dashboard-nav">
+                <div class="nav-item active" onclick="switchTab('seller-listings-tab', this)">My Listings</div>
+                <div class="nav-item" onclick="switchTab('seller-sales-tab', this)">Sales History</div>
+                <div class="nav-item" onclick="switchTab('seller-list-tab', this)">List New Ticket</div>
+            </div>
+
+            <div id="seller-listings-tab" class="dashboard-content active">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Date</th>
+                                <th>Section</th>
+                                <th>Seat</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>vs. Team Alpha</td>
+                                <td>25/10/2024</td>
+                                <td>107</td>
+                                <td>Row D, Seat 8</td>
+                                <td>$120.00</td>
+                                <td><span class="status-badge status-available">Available</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn" onclick="editListing(1)">Edit</button>
+                                    <button class="action-btn delete-btn" onclick="deleteListing(1)">Remove</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>vs. Team Bravo</td>
+                                <td>06/11/2024</td>
+                                <td>205</td>
+                                <td>Row A, Seat 3</td>
+                                <td>$95.00</td>
+                                <td><span class="status-badge status-available">Available</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn" onclick="editListing(2)">Edit</button>
+                                    <button class="action-btn delete-btn" onclick="deleteListing(2)">Remove</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>vs. Team Charlie</td>
+                                <td>18/11/2024</td>
+                                <td>112</td>
+                                <td>Row G, Seat 10</td>
+                                <td>$140.00</td>
+                                <td><span class="status-badge status-sold">Sold</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn" disabled>Edit</button>
+                                    <button class="action-btn delete-btn" disabled>Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="seller-sales-tab" class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">Total Sales</div>
+                        <div class="stat-value">$140.00</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Total Payout</div>
+                        <div class="stat-value">$126.00</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Tickets Sold</div>
+                        <div class="stat-value">1</div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Date</th>
+                                <th>Section</th>
+                                <th>Seat</th>
+                                <th>Price</th>
+                                <th>Payout</th>
+                                <th>Sold On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>vs. Team Charlie</td>
+                                <td>18/11/2024</td>
+                                <td>112</td>
+                                <td>Row G, Seat 10</td>
+                                <td>$140.00</td>
+                                <td>$126.00</td>
+                                <td>15/11/2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="seller-list-tab" class="dashboard-content">
+                <div class="stat-card">
+                    <h3>List New Ticket</h3>
+                    <form id="new-ticket-form" class="mt-20">
+                        <div class="form-group">
+                            <label for="event">Event</label>
+                            <select id="event" class="form-control" required>
+                                <option value="">Select Event</option>
+                                <option value="1">vs. Team Alpha - 25/10/2024</option>
+                                <option value="2">vs. Team Bravo - 06/11/2024</option>
+                                <option value="3">vs. Team Charlie - 18/11/2024</option>
+                                <option value="4">vs. Team Delta - 02/12/2024</option>
+                                <option value="5">vs. Team Echo - 15/12/2024</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="section">Section</label>
+                            <input type="text" id="section" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="row">Row</label>
+                            <input type="text" id="row" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="seat">Seat Number</label>
+                            <input type="text" id="seat" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price ($)</label>
+                            <input type="number" id="price" class="form-control" min="1" required>
+                        </div>
+                        <button type="submit" class="submit-btn">List Ticket</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="dashboard admin-dashboard hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Admin Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar">AD</div>
+                    <span class="user-name">Admin User</span>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <div class="dashboard-nav">
+                <div class="nav-item active" onclick="switchTab('admin-users-tab', this)">Users</div>
+                <div class="nav-item" onclick="switchTab('admin-tickets-tab', this)">Tickets</div>
+                <div class="nav-item" onclick="switchTab('admin-transactions-tab', this)">Transactions</div>
+                <div class="nav-item" onclick="switchTab('admin-analytics-tab', this)">Analytics</div>
+            </div>
+
+            <div id="admin-users-tab" class="dashboard-content active">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Admin User</td>
+                                <td>admin@seatwell.com</td>
+                                <td>Admin</td>
+                                <td>01/01/2024</td>
+                                <td><span class="status-badge status-available">Active</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn" onclick="editUser(1)">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Seller User</td>
+                                <td>seller@seatwell.com</td>
+                                <td>Seller</td>
+                                <td>15/02/2024</td>
+                                <td><span class="status-badge status-available">Active</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn" onclick="editUser(2)">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Buyer User</td>
+                                <td>buyer@seatwell.com</td>
+                                <td>Buyer</td>
+                                <td>20/03/2024</td>
+                                <td><span class="status-badge status-available">Active</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn" onclick="editUser(3)">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="admin-tickets-tab" class="dashboard-content">
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Event</th>
+                                <th>Seller</th>
+                                <th>Section</th>
+                                <th>Seat</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Listed On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>vs. Team Alpha</td>
+                                <td>Seller User</td>
+                                <td>107</td>
+                                <td>Row D, Seat 8</td>
+                                <td>$120.00</td>
+                                <td><span class="status-badge status-available">Available</span></td>
+                                <td>10/10/2024</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>vs. Team Bravo</td>
+                                <td>Seller User</td>
+                                <td>205</td>
+                                <td>Row A, Seat 3</td>
+                                <td>$95.00</td>
+                                <td><span class="status-badge status-available">Available</span></td>
+                                <td>12/10/2024</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>vs. Team Charlie</td>
+                                <td>Seller User</td>
+                                <td>112</td>
+                                <td>Row G, Seat 10</td>
+                                <td>$140.00</td>
+                                <td><span class="status-badge status-sold">Sold</span></td>
+                                <td>05/11/2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="admin-transactions-tab" class="dashboard-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-title">Total Revenue</div>
+                        <div class="stat-value">$140.00</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Total Payouts</div>
+                        <div class="stat-value">$126.00</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Total Tickets Sold</div>
+                        <div class="stat-value">1</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-title">Platform Fee (10%)</div>
+                        <div class="stat-value">$14.00</div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ticket</th>
+                                <th>Buyer</th>
+                                <th>Seller</th>
+                                <th>Amount</th>
+                                <th>Fee</th>
+                                <th>Payout</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>vs. Team Charlie</td>
+                                <td>Buyer User</td>
+                                <td>Seller User</td>
+                                <td>$140.00</td>
+                                <td>$14.00</td>
+                                <td>$126.00</td>
+                                <td>15/11/2024</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="admin-analytics-tab" class="dashboard-content">
+                <div class="stat-card">
+                    <h3>Platform Analytics</h3>
+                    <div style="height: 200px; background-color: #f8f9fa; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #666; font-weight: 500; margin-top: 20px;">
+                        Analytics Charts Would Appear Here
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Log In</h2>
+                <button class="close-btn" onclick="closeModal('login-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-role">Role</label>
+                        <select id="login-role" class="form-control" required>
+                            <option value="">Select Role</option>
+                            <option value="buyer">Buyer</option>
+                            <option value="seller">Seller</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Log In</button>
+                </form>
+                <div class="auth-toggle">
+                    Don't have an account? <a href="#" onclick="switchAuthModal('login-modal', 'signup-modal')">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Sign Up</h2>
+                <button class="close-btn" onclick="closeModal('signup-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-role">Role</label>
+                        <select id="signup-role" class="form-control" required>
+                            <option value="">Select Role</option>
+                            <option value="buyer">Buyer</option>
+                            <option value="seller">Seller</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Sign Up</button>
+                </form>
+                <div class="auth-toggle">
+                    Already have an account? <a href="#" onclick="switchAuthModal('signup-modal', 'login-modal')">Log in</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Detail Modal -->
+    <div id="ticket-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Ticket Details</h2>
+                <button class="close-btn" onclick="closeModal('ticket-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="ticket-detail">
+                    <div class="ticket-header">
+                        <h3 class="ticket-title" id="ticket-event-name">vs. Team Alpha</h3>
+                        <div class="ticket-price" id="ticket-price">$120.00</div>
+                    </div>
+                    <div class="ticket-meta">
+                        <div class="meta-item">
+                            <div class="meta-label">Date & Time</div>
+                            <div class="meta-value" id="ticket-date">25/10/2024 - 18:00</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Venue</div>
+                            <div class="meta-value" id="ticket-venue">Aviens XYZ</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Section</div>
+                            <div class="meta-value" id="ticket-section">107</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-label">Seat</div>
+                            <div class="meta-value" id="ticket-seat">Row D, Seat 8</div>
+                        </div>
+                    </div>
+                    <div class="ticket-seat-map">
+                        Seat Map Visualization Would Appear Here
+                    </div>
+                    <div class="ticket-actions">
+                        <button class="cta-btn primary-btn" onclick="confirmPurchase()">Confirm Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Purchase Confirmation</h2>
+                <button class="close-btn" onclick="closeModal('confirmation-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 20px;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px;">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z" fill="#2ecc71"/>
+                    </svg>
+                    <h3 style="margin-bottom: 10px; color: var(--primary);">Purchase Successful!</h3>
+                    <p style="margin-bottom: 20px; color: #666;">Your ticket for <span id="confirmation-event" style="font-weight: 500;">vs. Team Alpha</span> has been successfully purchased.</p>
+                    <p style="margin-bottom: 20px; color: #666;">A confirmation has been sent to your email.</p>
+                    <button class="cta-btn primary-btn" style="width: auto; padding: 10px 30px;" onclick="closeModal('confirmation-modal')">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        const tickets = [
+            {
+                id: 1,
+                event: "vs. Team Alpha",
+                date: "25/10/2024 - 18:00",
+                venue: "Aviens XYZ",
+                section: "107",
+                row: "D",
+                seat: "8",
+                price: 120,
+                status: "available",
+                seller: "Seller User"
+            },
+            {
+                id: 2,
+                event: "vs. Team Bravo",
+                date: "06/11/2024 - 20:00",
+                venue: "Aviens XYZ",
+                section: "205",
+                row: "A",
+                seat: "3",
+                price: 95,
+                status: "available",
+                seller: "Seller User"
+            },
+            {
+                id: 3,
+                event: "vs. Team Charlie",
+                date: "18/11/2024 - 19:30",
+                venue: "Aviens XYZ",
+                section: "112",
+                row: "G",
+                seat: "10",
+                price: 140,
+                status: "sold",
+                seller: "Seller User"
+            }
+        ];
+
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submissions
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('signup-form').addEventListener('submit', handleSignup);
+            document.getElementById('new-ticket-form').addEventListener('submit', handleNewTicket);
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function switchAuthModal(fromId, toId) {
+            closeModal(fromId);
+            openModal(toId);
+        }
+
+        // Navigation functions
+        function navigateToHome() {
+            document.getElementById('landing-page').style.display = 'block';
+            document.getElementById('buyer-dashboard').style.display = 'none';
+            document.getElementById('seller-dashboard').style.display = 'none';
+            document.getElementById('admin-dashboard').style.display = 'none';
+            currentUser = null;
+        }
+
+        function logout() {
+            navigateToHome();
+        }
+
+        // Dashboard functions
+        function switchTab(tabId, element) {
+            // Get all nav items and content tabs in the current dashboard
+            const dashboard = element.closest('.dashboard');
+            const navItems = dashboard.querySelectorAll('.nav-item');
+            const contentTabs = dashboard.querySelectorAll('.dashboard-content');
+
+            // Remove active class from all nav items and content tabs
+            navItems.forEach(item => item.classList.remove('active'));
+            contentTabs.forEach(tab => tab.classList.remove('active'));
+
+            // Add active class to clicked nav item and corresponding content tab
+            element.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // Ticket functions
+        function viewTicket(ticketId) {
+            const ticket = tickets.find(t => t.id === ticketId);
+            if (ticket) {
+                document.getElementById('ticket-event-name').textContent = ticket.event;
+                document.getElementById('ticket-price').textContent = `$${ticket.price.toFixed(2)}`;
+                document.getElementById('ticket-date').textContent = ticket.date;
+                document.getElementById('ticket-venue').textContent = ticket.venue;
+                document.getElementById('ticket-section').textContent = ticket.section;
+                document.getElementById('ticket-seat').textContent = `Row ${ticket.row}, Seat ${ticket.seat}`;
+                openModal('ticket-modal');
+            }
+        }
+
+        function buyTicket(ticketId) {
+            const ticket = tickets.find(t => t.id === ticketId);
+            if (ticket) {
+                viewTicket(ticketId);
+            }
+        }
+
+        function confirmPurchase() {
+            closeModal('ticket-modal');
+            document.getElementById('confirmation-event').textContent = document.getElementById('ticket-event-name').textContent;
+            openModal('confirmation-modal');
+        }
+
+        function editListing(ticketId) {
+            const ticket = tickets.find(t => t.id === ticketId);
+            if (ticket) {
+                alert(`Editing ticket for ${ticket.event}`);
+            }
+        }
+
+        function deleteListing(ticketId) {
+            if (confirm('Are you sure you want to remove this listing?')) {
+                alert(`Ticket ${ticketId} removed`);
+            }
+        }
+
+        function editUser(userId) {
+            alert(`Editing user with ID ${userId}`);
+        }
+
+        // Form handlers
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            const role = document.getElementById('login-role').value;
+
+            if (!email || !password || !role) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            currentUser = {
+                email,
+                role,
+                name: role.charAt(0).toUpperCase() + role.slice(1) + ' User'
+            };
+
+            closeModal('login-modal');
+
+            // Show appropriate dashboard
+            document.getElementById('landing-page').style.display = 'none';
+            
+            if (role === 'buyer') {
+                document.getElementById('buyer-dashboard').style.display = 'block';
+            } else if (role === 'seller') {
+                document.getElementById('seller-dashboard').style.display = 'block';
+            } else if (role === 'admin') {
+                document.getElementById('admin-dashboard').style.display = 'block';
+            }
+        }
+
+        function handleSignup(e) {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const role = document.getElementById('signup-role').value;
+
+            if (!name || !email || !password || !role) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            alert(`Account created successfully for ${name} as a ${role}`);
+            closeModal('signup-modal');
+            openModal('login-modal');
+        }
+
+        function handleNewTicket(e) {
+            e.preventDefault();
+            const event = document.getElementById('event').value;
+            const section = document.getElementById('section').value;
+            const row = document.getElementById('row').value;
+            const seat = document.getElementById('seat').value;
+            const price = document.getElementById('price').value;
+
+            if (!event || !section || !row || !seat || !price) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            const eventText = document.getElementById('event').options[document.getElementById('event').selectedIndex].text;
+            alert(`New ticket listed for ${eventText.split(' - ')[0]}, Section ${section}, Row ${row}, Seat ${seat} for $${price}`);
+            
+            // Reset form
+            document.getElementById('new-ticket-form').reset();
+            
+            // Switch to listings tab
+            switchTab('seller-listings-tab', document.querySelector('#seller-listings-tab').previousElementSibling);
+        }
+    </script>
+</body>
+</html>
